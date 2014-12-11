@@ -71,7 +71,3 @@ class dbObject():
         except sqlite3.error, e:
             print "Error %s:" % e.args[0]
             
-    def _prepareData(self, dataSet):
-        '''INTERNAL COMMAND - Converts/checks data for valid tuple before insertion'''
-        ret = (1,2,3,)
-        return ret
