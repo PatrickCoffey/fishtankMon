@@ -18,7 +18,7 @@ class dbObject():
         Its a collection of SQLite3 objects wrapped together for ease.
         
         if dbPath is left blank on initialisation it will use an in
-        ':memory:' database
+        :memory: database
     '''
     connection = None
     assert isinstance(connection, sqlite3.Connection)
