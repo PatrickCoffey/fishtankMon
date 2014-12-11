@@ -35,7 +35,16 @@ class ArduinoComBase(Serial):
         
         if self.isOpen():
             ret = self.read(1)
-            return(ret) 
+            return(ret)
+    
+    def _processData(data):
+        ret = {}
+        sensors = str.split(data, ',')
+        for sensor in sensors:
+            temp = str.split(sensor, ':')
+            ret[str.strip(temp[0])] = float(str.strip(temp[1]))
+        return ret
+        
 
 class ArduinoCom(ArduinoComBase):
     '''
@@ -56,12 +65,16 @@ class ArduinoCom(ArduinoComBase):
             self.flush()
             self.write('R')
             time.sleep(0.25)
-            ret = self.readline()
+            ret = self._processData(self.readline())
             return(ret)
         
             
 if __name__ == "__main__":
-    arduino = ArduinoCom()
-    while arduino.isOpen():
-        print(arduino.arduinoGetSensors())
+
+    #derp = _processData('light: 512, ph: 7.2')
+    #print derp
+    
+    #arduino = ArduinoCom()
+    #while arduino.isOpen():
+        #print(arduino.arduinoGetSensors())
 
