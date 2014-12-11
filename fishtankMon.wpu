@@ -4,7 +4,10 @@
 # Wing IDE project file : User-specific branch                   #
 ##################################################################
 [user attributes]
-cache.last-mime-type = {loc('unknown:<untitled> #5'): 'text/x-diff'}
+cache.last-mime-type = {loc('unknown:<untitled> #9'): 'text/x-diff',
+                        loc('unknown:<untitled> #5'): 'text/x-diff',
+                        loc('unknown:<untitled> #6'): 'text/x-diff',
+                        loc('unknown:<untitled> #8'): 'text/x-diff'}
 guimgr.overall-gui-state = {'windowing-policy': 'combined-window',
                             'windows': [{'name': 'Cz4mwpeWrNdXJQfu1Y3I0NdvbV'\
         'MQKFC5',
@@ -23,10 +26,8 @@ guimgr.overall-gui-state = {'windowing-policy': 'combined-window',
                                0,
                                {'tree-state': {'file-sort-method': 'by name',
         'list-files-first': False,
-        'tree-states': {'deep': {'expanded-nodes': [(0,),
-        (0,
-         0)],
-                                 'selected-nodes': [],
+        'tree-states': {'deep': {'expanded-nodes': [(0,)],
+                                 'selected-nodes': [(0,)],
                                  'top-node': (0,)}},
         'tree-style': 'deep'}}),
                               ('browser',
@@ -521,16 +522,13 @@ guimgr.overall-gui-state = {'windowing-policy': 'combined-window',
         20),
         'current-loc': loc('lib/arduinoCom.py'),
         'editor-state-list': [(loc('lib/arduinoCom.py'),
-                               {'attrib-starts': [('ArduinoCom',
-        39),
-        ('ArduinoCom.arduinoGetSensors',
-         49)],
-                                'first-line': 36,
+                               {'attrib-starts': [],
+                                'first-line': 45,
                                 'folded-linenos': [],
-                                'sel-line': 59,
-                                'sel-line-start': 1890,
-                                'selection_end': 1913,
-                                'selection_start': 1913}),
+                                'sel-line': 67,
+                                'sel-line-start': 2070,
+                                'selection_end': 2070,
+                                'selection_start': 2070}),
                               (loc('lib/dbHandler.py'),
                                {'attrib-starts': [('dbObject',
         13),
@@ -549,7 +547,7 @@ guimgr.overall-gui-state = {'windowing-policy': 'combined-window',
                                'open_files': [u'lib/dbHandler.py',
         u'lib/arduinoCom.py']},
         'saved_notebook_display': None,
-        'split_percents': {0: 0.6324167872648335},
+        'split_percents': {0: 0.76410998552822},
         'splits': 2,
         'tab_location': 'top',
         'user_data': {}},
@@ -565,3 +563,9 @@ guimgr.overall-gui-state = {'windowing-policy': 'combined-window',
 guimgr.recent-documents = [loc('lib/arduinoCom.py'),
                            loc('lib/dbHandler.py')]
 search.search-history = [u'isopen']
+versioncontrol.git.remote-history = ['https://PatrickCoffey:Vitamins1@github'\
+                                     '.com/PatrickCoffey/fishtankMon.git',
+                                     'http://github.com/PatrickCoffey/fishta'\
+                                     'nkMon.git',
+                                     'https://github.com/PatrickCoffey/fisht'\
+                                     'ankMon.git']
