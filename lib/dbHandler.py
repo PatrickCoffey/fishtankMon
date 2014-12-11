@@ -84,8 +84,8 @@ class sensorStore(sensorStoreBase):
             
             
 if __name__ == '__main__':
-    
-    test = sensorStore(':memory:')
-    valueList = {'ph':7.2,'light':512}
-    test.insertData(valueList)
-    test.test()
+    pass
+    #test = sensorStore(':memory:')
+    #valueList = {'ph':7.2,'light':512}
+    #test.insertData(valueList)
+    #test.test()

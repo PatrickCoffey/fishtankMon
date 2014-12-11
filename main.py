@@ -16,4 +16,4 @@ db = dbHandler.sensorStore()
 while true:
     data = arduino.arduinoGetSensors()
     print data
-    #db.insertData(data)
+    db.insertData(data)

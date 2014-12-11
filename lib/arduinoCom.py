@@ -18,21 +18,18 @@ class ArduinoComBase(Serial):
         This class houses all the code used internally to the function.
         The ArduinoCom class inherits this and adds the user functions.
         
-        Most documentation is found in pySerial
+        Check pySerial Documentation
     '''
     
-    def __init__(self, comPort='/dev/ttyACM0', baudRate=115200, statusChar='`'):
-        '''Overloaded to allow default values - Check pySerial Documentation'''
+    def __init__(self, comPort='/dev/ttyACM0', baudRate=115200):
+        '''Overloaded to set default values - Check pySerial Documentation'''
         Serial.__init__(self, comPort, baudRate)
         print("Initialised Serial connection")
-        self.statusChar = statusChar
-        time.sleep(2)
+        time.sleep(3)
 
     def _readChar(self):
         '''Read a single byte from the Serial buffer'''
         ret = ''
-        assert(isinstance(ret, str))
-        
         if self.isOpen():
             ret = self.read(1)
             return(ret)
@@ -53,14 +50,12 @@ class ArduinoCom(ArduinoComBase):
         It is basically the Serial class from pySerial wrapped into
         a class with a few extra arduino specific functions.
         
-        Most documentation is found in pySerial
+        Check pySerial Documentation
     '''
     
     def arduinoGetSensors(self):
         '''Gets the sensor values from the Arduino'''
-        ret = ''
-        assert(isinstance(ret, str))
-        
+        ret = {}
         if self.isOpen():
             self.flush()
             self.write('R')
@@ -70,7 +65,7 @@ class ArduinoCom(ArduinoComBase):
         
             
 if __name__ == "__main__":
-
+    pass
     #derp = _processData('light: 512, ph: 7.2')
     #print derp
     
