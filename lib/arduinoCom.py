@@ -13,7 +13,7 @@ import time
 
 class ArduinoComBase(Serial):
     '''
-    Arduino Communication Object:
+    Base Arduino Communication Object:
         This represents the base of the arduino connected via serial. 
         This class houses all the code used internally to the function.
         The ArduinoCom class inherits this and adds the user functions.

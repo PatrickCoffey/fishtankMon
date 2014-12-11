@@ -30,10 +30,17 @@ This is the class for the arduiono communication object.
 Its basically just a wrapper for a the serial object
 but it has a bit of extra arduino specific finctionality.
 
-    Arduino Communication Object:
+    Base Arduino Communication Object:
         This represents the base of the arduino connected via serial. 
         This class houses all the code used internally to the function.
         The ArduinoCom class inherits this and adds the user functions.
+        
+        Most documentation is found in pySerial
+
+    Arduino Communication Object:
+        This represents the arduino connected via serial. 
+        It is basically the Serial class from pySerial wrapped into
+        a class with a few extra arduino specific functions.
         
         Most documentation is found in pySerial
 
