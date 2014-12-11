@@ -54,7 +54,7 @@ It contains quite a few useful features that include:
     and easily reusable for alternate projects.
 
   Sensor Definitions 
-  ==================
+  ------------------
     int iSensorCount = 1
      * Total Number of Sensors.
      * can be used to disable the higher numbered sensors.
@@ -66,7 +66,7 @@ It contains quite a few useful features that include:
      * 'a' = Analog
     
   General Settings
-  ================
+  ----------------
     int iMainDelay = 50
      * The number of miliseconds to pause in the mail loop.
      * This is linked to the iExpire variable in the sense
