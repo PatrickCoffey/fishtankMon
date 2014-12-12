@@ -65,7 +65,7 @@ It contains quite a few useful features that include:
     int iSensorCount = 1
      * Total Number of Sensors.
      * can be used to disable the higher numbered sensors.
-
+     
     int sensor1Pin = 1
     char sensor1Type = 'd'
      * Example of typical Sensor Definition
