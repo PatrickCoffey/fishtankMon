@@ -7,13 +7,22 @@
 
 import lib.arduinoCom as arduinoCom
 import lib.dbHandler as dbHandler
+import lib.utils as utils
 
 import time
 
 arduino = arduinoCom.ArduinoCom()
 db = dbHandler.sensorStore()
 
-while true:
+counter = 0
+
+while arduino.isOpen():
+    counter += 1
     data = arduino.arduinoGetSensors()
-    print data
     db.insertData(data)
+    
+    if counter == 10:
+        counter = 0
+        db.test()
+    
+    time.sleep(1)

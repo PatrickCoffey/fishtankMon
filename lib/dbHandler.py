@@ -10,7 +10,8 @@
 import sqlite3
 import os
 import sys
-import time
+
+import utils
 
 class sensorStoreBase():
     '''
@@ -44,23 +45,13 @@ class sensorStoreBase():
     def _createDB(self):
         sSQL = 'CREATE TABLE ' + self.sensorTableName + '(id INTEGER PRIMARY KEY, date REAL, type TEXT, value REAL);'
         self.cursor.execute(sSQL)
-        
-    def _prepareData(self, values):
-        insertDS = []
-        insertDR = {}
-        for key in values.iterkeys():
-            insertDR['date'] = time.time()
-            insertDR['type'] = str(key)
-            insertDR['value'] = float(values.get(key))
-            insertDS.append(insertDR.copy())
-        return insertDS    
-    
+            
     def test(self):
         sSQL = 'SELECT * from ' + self.sensorTableName + ';'
         self.cursor.execute(sSQL)
         ret = self.cursor.fetchall()
         for row in ret:
-            print row
+            print row                 
         
 class sensorStore(sensorStoreBase):
     '''
@@ -75,7 +66,7 @@ class sensorStore(sensorStoreBase):
     def insertData(self, values):
         '''Inserts sensor values into database'''
         sSQL = 'INSERT INTO ' + self.sensorTableName + '(date, type, value) VALUES (:date, :type, :value);'
-        insertDS = self._prepareData(values)
+        insertDS = utils.prepareDataInsert(values)
         self.cursor.executemany(sSQL, insertDS)        
         #try:
             #self.cursor.execute(sSQL, dataSet)
@@ -85,7 +76,7 @@ class sensorStore(sensorStoreBase):
             
 if __name__ == '__main__':
     pass
-    #test = sensorStore(':memory:')
-    #valueList = {'ph':7.2,'light':512}
-    #test.insertData(valueList)
-    #test.test()
+    test = sensorStore(':memory:')
+    valueList = {'ph':7.2,'light':512}
+    test.insertData(valueList)
+    test.test()

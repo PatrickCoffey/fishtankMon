@@ -21,7 +21,7 @@ class ArduinoComBase(Serial):
         Check pySerial Documentation
     '''
     
-    def __init__(self, comPort='/dev/ttyACM0', baudRate=115200):
+    def __init__(self, comPort='/dev/ttyACM1', baudRate=9600):
         '''Overloaded to set default values - Check pySerial Documentation'''
         Serial.__init__(self, comPort, baudRate)
         print("Initialised Serial connection")
@@ -34,7 +34,7 @@ class ArduinoComBase(Serial):
             ret = self.read(1)
             return(ret)
     
-    def _processData(data):
+    def _processData(self, data):
         ret = {}
         sensors = str.split(data, ',')
         for sensor in sensors:
@@ -59,7 +59,7 @@ class ArduinoCom(ArduinoComBase):
         if self.isOpen():
             self.flush()
             self.write('R')
-            time.sleep(0.25)
+            time.sleep(0.5)
             ret = self._processData(self.readline())
             return(ret)
         
