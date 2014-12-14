@@ -73,14 +73,11 @@
 #include "DHT.h"
 
 // Sensor Definitions 
-int iSensorCount = 2;
+int iSensorCount = 3;
 
-int sensorPins[] = {
-  1,1}; 
-char sensorTypes[] = {
-  'd','a'};
-String sensorNames[] = {
-  "Leak", "Light"};
+int sensorPins[] = {1, 1, 2}; 
+char sensorTypes[] = {'d', 'a', 'D'};
+String sensorNames[] = {"Leak", "Light", "DHT22"};
 //---------------------
 
 // General Settings
@@ -167,8 +164,26 @@ void initPins() {
       //Analog Sensor
       ;
       break;
+    case 'D':
+      //DHT22 Sensor
+      DHT dht(sensorPins[i], sensorNames[i])
+      ;
+      break;
     }
   }
+}
+
+String readDHT() {
+  String ret;
+  do {
+    float h = dht.readHumidity();
+    float t = dht.readTemperature();
+  } while (isnan(h) || isnan(t));
+  ret = "Humidity: ";
+  ret += String(h, DEC);
+  ret += ", Temp: ";
+  ret += String(t, DEC);
+  return ret
 }
 
 String readSensors() {
@@ -194,6 +209,11 @@ String readSensors() {
       valA = analogRead(sensorPins[i]);
       val = String(valA, DEC);
       ret += val;
+      break;
+    case 'D':
+      String valDHT;
+      valDHT = readDHT();
+      ret += valDHT;
       break;
     }
   }
