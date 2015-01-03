@@ -11,18 +11,20 @@ import lib.utils as utils
 
 import time
 
-arduino = arduinoCom.ArduinoCom()
-db = dbHandler.sensorStore()
 
-counter = 0
+if __name__ == '__main__':
+    arduino = arduinoCom.ArduinoCom()
+    db = dbHandler.sensorStore()
 
-while arduino.isOpen():
-    counter += 1
-    data = arduino.arduinoGetSensors()
-    db.insertData(data)
+    counter = 0
+
+    while arduino.isOpen():
+        counter += 1
+        data = arduino.arduinoGetSensors()
+        db.insertData(data)
     
-    if counter == 10:
-        counter = 0
-        db.test()
+        if counter == 10:
+            counter = 0
+            db.test()
     
-    time.sleep(1)
+        time.sleep(1)
