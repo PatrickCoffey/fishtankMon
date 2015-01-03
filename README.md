@@ -5,6 +5,7 @@ code for my fish tank monitor project...
 
 I'm trying to keep it fairly reusable
 
+THIS IS STILL VERY VERY ALPHA!!
 
 fishtankMon - main.py
 =====================
