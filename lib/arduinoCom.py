@@ -21,6 +21,12 @@ class ArduinoComBase(Serial):
         Check pySerial Documentation
     '''
     
+    STATUS_AWAKE = '0 - Awake!'
+    STATUS_BUSY = '1 - Busy!'
+    CHAR_READ = 'R'
+    CHAR_STATUS = 'S'
+    CHAR_SLEEP = 'P'
+    
     def __init__(self, comPort='/dev/ttyACM1', baudRate=9600):
         '''Overloaded to set default values - Check pySerial Documentation'''
         Serial.__init__(self, comPort, baudRate)
@@ -53,17 +59,38 @@ class ArduinoCom(ArduinoComBase):
         Check pySerial Documentation
     '''
     
+    def arduinoIsReady(self):
+        '''Gets the status of the Arduino, can be used to check if it is ready'''
+        ret = ''
+        if self.isOpen():
+            self.flush()
+            self.write(self.CHAR_STATUS)
+            time.sleep(0.5)
+            ret = self.readline()
+            if ret == self.STATUS_AWAKE:
+                return True
+            else:
+                return False  
+            
     def arduinoGetSensors(self):
         '''Gets the sensor values from the Arduino'''
         ret = {}
-        if self.isOpen():
+        if self.arduinoIsReady():
             self.flush()
-            self.write('R')
+            self.write(self.CHAR_READ)
             time.sleep(0.5)
             ret = self._processData(self.readline())
             return(ret)
-        
-            
+
+    def arduinoSleep(self):
+        '''Puts the Arduino to sleep by calling the sleep function in PF1 Firmware'''
+        ret = ''
+        if self.arduinoIsReady():
+            self.flush()
+            self.write(self.CHAR_SLEEP)
+            time.sleep(0.5)
+
+
 if __name__ == "__main__":
     pass
     #derp = _processData('light: 512, ph: 7.2')

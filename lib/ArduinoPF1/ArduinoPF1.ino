@@ -53,7 +53,7 @@
  * With modifications from Ruben Laguna  2008-10-15
  * And more modifications from Patrick Coffey 2014-12-12
  
- *  This program is free software: you can redistribute it and/or modify
+ *  This ,program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
@@ -70,6 +70,7 @@
 
 #include <avr/power.h>
 #include <avr/sleep.h>
+#include <stdlib.h>
 #include "DHT.h"
 
 // Sensor Definitions 
@@ -86,12 +87,16 @@ char cSeperator = ',';
 int iExpire = 100;
 int iMainDelay = 10;
 int iWaitDelay = 500;
+char cReadSensors = 'R';
+char cSleep = 'P';
+char cStatus = 'S';
 //---------------------
 
 // Other Settings/Globals
 int inByte = 0;            //global
 int iCountExp = 0;         //global
 char serialIn[16];         //global
+DHT dht(2, 'DHT22');
 //---------------------
 
 void setup() {
@@ -113,9 +118,13 @@ void loop() {
       String val = readSensors();
       Serial.print(val);   
     }
-    if (inByte == 'S') {
+    if (inByte == 'P') {
       iCountExp = 0;
       sleepNow();                     // sleep function called here  
+    }
+    if (inByte == 'S') {
+      iCountExp = 0;
+      Serial.print(getStatus());
     }
   }
   if (iCountExp == iExpire) {
@@ -166,24 +175,36 @@ void initPins() {
       break;
     case 'D':
       //DHT22 Sensor
-      DHT dht(sensorPins[i], sensorNames[i])
       ;
       break;
     }
   }
 }
 
+String getStatus() {
+  String ret
+  //add other logic here later if necesarry
+  ret = "0 - Awake!";
+  return ret;
+}
+
 String readDHT() {
   String ret;
+  float h;
+  float t;
   do {
-    float h = dht.readHumidity();
-    float t = dht.readTemperature();
+    h = dht.readHumidity();
+    t = dht.readTemperature();
+    delay(50);
   } while (isnan(h) || isnan(t));
+  char s[10];
+  dtostrf(h, 1, 2, s);
   ret = "Humidity: ";
-  ret += String(h, DEC);
+  ret += s;
+  dtostrf(t, 1, 2, s);
   ret += ", Temp: ";
-  ret += String(t, DEC);
-  return ret
+  ret += s;
+  return ret;
 }
 
 String readSensors() {
@@ -220,4 +241,3 @@ String readSensors() {
   ret += "\n";
   return ret;
 }  
-
