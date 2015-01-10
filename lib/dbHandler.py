@@ -51,7 +51,7 @@ class sensorStoreBase():
         self.cursor.execute(sSQL)
         ret = self.cursor.fetchall()
         for row in ret:
-            print row                 
+            print row             
         
 class sensorStore(sensorStoreBase):
     '''
